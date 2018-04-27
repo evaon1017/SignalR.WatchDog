@@ -17,3 +17,7 @@ WatchDogTask/bin/
 WatchDogTask/obj/
 WatchDogTaskLib/bin/
 WatchDogTaskLib/obj/
+WatchDog.AliveMonitor/bin/
+WatchDog.AliveMonitor/obj/
+WatchDog.DBResponseMonitor/bin/
+WatchDog.DBResponseMonitor/obj/

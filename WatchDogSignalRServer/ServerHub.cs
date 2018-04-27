@@ -108,6 +108,16 @@ namespace WatchDogSignalRServer
             });
         }
 
+        public void inIAmAlive(string machineName)
+        {
+            Clients.All.OnAliveReported(machineName);
+        }
+
+        public void inDBTestReport(string machineName, string folderName, string fileName, string result, double executionMs)
+        {
+            Clients.All.onDBTestReport(machineName, folderName, fileName, result, executionMs);
+        }
+
         public override Task OnDisconnected(bool stopCalled)
         {
             var id = Context.ConnectionId;

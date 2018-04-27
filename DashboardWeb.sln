@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog.ProcessMonitor", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog.Windows.Dashboard", "WatchDog.Windows.Dashboard\WatchDog.Windows.Dashboard.csproj", "{B9A4E199-0931-41B8-A8FD-C26662B07FC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog.AliveMonitor", "WatchDog.AliveMonitor\WatchDog.AliveMonitor.csproj", "{7F5EE881-2EE9-4B92-B16D-2EE50B4DC1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog.DBResponseMonitor", "WatchDog.DBResponseMonitor\WatchDog.DBResponseMonitor.csproj", "{C84DCE6C-97F4-4DEA-9D85-B3C2E01CCB4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{B9A4E199-0931-41B8-A8FD-C26662B07FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A4E199-0931-41B8-A8FD-C26662B07FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A4E199-0931-41B8-A8FD-C26662B07FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F5EE881-2EE9-4B92-B16D-2EE50B4DC1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F5EE881-2EE9-4B92-B16D-2EE50B4DC1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F5EE881-2EE9-4B92-B16D-2EE50B4DC1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F5EE881-2EE9-4B92-B16D-2EE50B4DC1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C84DCE6C-97F4-4DEA-9D85-B3C2E01CCB4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C84DCE6C-97F4-4DEA-9D85-B3C2E01CCB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C84DCE6C-97F4-4DEA-9D85-B3C2E01CCB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C84DCE6C-97F4-4DEA-9D85-B3C2E01CCB4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

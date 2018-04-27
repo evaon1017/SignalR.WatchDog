@@ -13,6 +13,9 @@ namespace WatchDogTaskLib
     {
         protected delegate void WriteLog(int intend, string msg);
         protected bool ReceiveSignal { get; set; } = true;
+        protected bool EchoDebugInfo { get; set; } = false;
+        protected string machineName = Environment.MachineName;
+        protected TimeSpan Interval { get; set; } = TimeSpan.Zero;
         protected event EventHandler ReloadConfig;
         protected abstract string TaskName { get; }
         private string url;
@@ -97,6 +100,12 @@ namespace WatchDogTaskLib
                 var command = Console.ReadLine();
                 switch (command.ToLower())
                 {
+                    case "debug+":
+                        this.EchoDebugInfo = true;
+                        break;
+                    case "debug-":
+                        this.EchoDebugInfo = false;
+                        break;
                     case "cls":
                         Console.Clear();
                         break;
@@ -130,21 +139,57 @@ namespace WatchDogTaskLib
                         break;
                     case "?":
                         Console.WriteLine();
+                        Console.WriteLine($"debug+                      => echo debug info");
+                        Console.WriteLine($"debug-                      => hide debug info");
                         Console.WriteLine($"cls                         => clean console buffer");
                         Console.WriteLine($"quit, exit, stop, end, kill => shutdown watch dog");
                         Console.WriteLine($"quit, exit, stop, end, kill => shutdown watch dog");
                         Console.WriteLine($"receive+                    => start to handle others signal with same kind");
                         Console.WriteLine($"receive-                    => stop to handle others signal with same kind");
                         Console.WriteLine($"reload                      => ask program to reload app.config");
+                        Console.WriteLine($"interval 1234               => set interval fix to 1234 second");
+                        Console.WriteLine($"interval clear              => set interval to dynamic");
                         Console.WriteLine($"?                           => print this help");
                         this.PrintAdditionalCommandInfo();
                         Console.WriteLine();
                         break;
+                        
                     default:
+
+                        //下面是特別判斷，不是完全等於的文字，所以沒辦法放在case裡面
+                        if (command.StartsWith("interval "))
+                        {
+                            var text = command.Substring(9);
+
+                            if (text == "clear")
+                            {
+                                this.Interval = TimeSpan.Zero;
+                                this.AppendLog(1, $"interval set to dynamic (decide by derrived class)");
+                                this.tmr.Change(Convert.ToInt32(this.NextCheckPoint().TotalMilliseconds), -1);
+                                break;
+                            }
+                            double value;
+                            try
+                            {
+                                value = Convert.ToDouble(text);
+                            }
+                            catch (Exception)
+                            {
+                                this.AppendLog(1, $"can't parse {text} to numeric");
+                                return;
+                            }
+                            this.Interval = TimeSpan.FromSeconds(value);
+                            this.AppendLog(1, $"interval is fixed to {value} seconds");
+                            this.tmr.Change(Convert.ToInt32(this.Interval.TotalMilliseconds), -1);
+                            break;
+                        }
+
+                        // 基本指令都不認得，就交給繼承端判，如果有認得會return true
                         if (this.AdditionalCommandHandle(command) == true)
                         {
                             continue;
                         }
+
                         Console.WriteLine();
                         Console.WriteLine($"Unknow command: {command}");
                         Console.WriteLine();
@@ -161,15 +206,32 @@ namespace WatchDogTaskLib
                 try
                 {
                     this.EnsureSignalRConnection();
-                    AppendLog(0, "checking task runable");
+                    if (this.EchoDebugInfo)
+                    {
+                        AppendLog(0, "checking task runable");
+                    }
                     if (this.TaskCheck() == true)
                     {
-                        AppendLog(0, "executing task");
+                        if (this.EchoDebugInfo)
+                        {
+                            AppendLog(0, "executing task");
+                        }
                         this.DoTask();
-                        AppendLog(0, "finish");
+                        if (this.EchoDebugInfo)
+                        {
+                            AppendLog(0, "finish");
+                        }
                     }
-                    var nextCheckPoint = this.NextCheckPoint();
-                    ms = Convert.ToInt32(nextCheckPoint.TotalMilliseconds);
+
+                    if (this.Interval != TimeSpan.Zero)
+                    {
+                        ms = Convert.ToInt32(this.Interval.TotalMilliseconds);
+                    }
+                    else
+                    {
+                        var nextCheckPoint = this.NextCheckPoint();
+                        ms = Convert.ToInt32(nextCheckPoint.TotalMilliseconds);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -231,6 +293,7 @@ namespace WatchDogTaskLib
         }
 
         private static readonly object _syncRoot = new object();
+
         protected void AppendLog(int intend, string msg)
         {
             var nowText = DateTime.Now.ToString("HH:mm:ss.fff");
@@ -247,13 +310,23 @@ namespace WatchDogTaskLib
 
             lock (_syncRoot)
             {
-                File.AppendAllText(this.logFileName, msg);
+                File.AppendAllText(this.logFileName, msg + "\r\n");
             }
-            Console.WriteLine(msg);
+
+            this.ConsoleWriteLine(msg);
         }
-        protected void WriteConsole(string msg)
+
+        protected void ConsoleWrite(string msg)
         {
             Console.Write(msg);
+        }
+        protected void ConsoleWriteLine()
+        {
+            Console.WriteLine();
+        }
+        protected void ConsoleWriteLine(string msg)
+        {
+            Console.WriteLine(msg);
         }
 
         private void EnsureSignalRConnection()

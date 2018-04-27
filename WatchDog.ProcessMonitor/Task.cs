@@ -35,7 +35,7 @@ namespace WatchDog.ProcessMonitor
                 try
                 {
                     this.processNames = ((string)Config.Default["target"]).Split(',').Select(i => i.Trim()).ToArray();
-                    base.WriteConsole($"config reloaded");
+                    base.ConsoleWriteLine($"config reloaded");
                 }
                 catch
                 {
@@ -59,11 +59,11 @@ namespace WatchDog.ProcessMonitor
         {
             if (processNames == null || processNames.Length == 0)
             {
-                base.WriteConsole("\r\n");
-                base.WriteConsole("\tno monitor target set\r\n");
-                base.WriteConsole("\tplease use 'add target xxxxx' to add target\r\n");
-                base.WriteConsole("\tor press ? and <enter> to see help\r\n");
-                base.WriteConsole("\r\n");
+                base.ConsoleWriteLine();
+                base.ConsoleWriteLine("\tno monitor target set");
+                base.ConsoleWriteLine("\tplease use 'add target xxxxx' to add target");
+                base.ConsoleWriteLine("\tor press ? and <enter> to see help");
+                base.ConsoleWriteLine();
                 return;
             }
 
@@ -132,7 +132,7 @@ namespace WatchDog.ProcessMonitor
         {
             if (command == "list")
             {
-                base.WriteConsole(string.Join("\r\n", Process.GetProcesses().Select(p => p.ProcessName).Distinct().OrderBy(name => name).ToArray()));
+                base.ConsoleWriteLine(string.Join("\r\n", Process.GetProcesses().Select(p => p.ProcessName).Distinct().OrderBy(name => name).ToArray()));
                 return true;
             }
             else if (command.StartsWith("add target"))
@@ -149,7 +149,7 @@ namespace WatchDog.ProcessMonitor
                 }
                 else
                 {
-                    base.WriteConsole($"{target} already exists in target list");
+                    base.ConsoleWriteLine($"{target} already exists in target list");
                 }
                 return true;
             }
@@ -167,7 +167,7 @@ namespace WatchDog.ProcessMonitor
                 }
                 else
                 {
-                    base.WriteConsole($"{target} not exists in target list");
+                    base.ConsoleWriteLine($"{target} not exists in target list");
                 }
                 return true;
             }
@@ -176,9 +176,9 @@ namespace WatchDog.ProcessMonitor
 
         protected override void PrintAdditionalCommandInfo()
         {
-            base.WriteConsole("list                => list all sorted process name\r\n");
-            base.WriteConsole("add target xxxxx    => add xxxxx to the monitor list\r\n");
-            base.WriteConsole("remove target xxxxx => add xxxxx to the monitor list\r\n");
+            base.ConsoleWriteLine("list                => list all sorted process name");
+            base.ConsoleWriteLine("add target xxxxx    => add xxxxx to the monitor list");
+            base.ConsoleWriteLine("remove target xxxxx => add xxxxx to the monitor list");
         }
     }
 }
