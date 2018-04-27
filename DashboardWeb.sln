@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardWeb", "DashboardWeb\DashboardWeb.csproj", "{27E5B82A-C6AE-4133-9C5B-608952696AF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDogTaskLib", "WatchDogTaskLib\WatchDogTaskLib.csproj", "{6CE8837B-2842-433D-8C1A-B872B536475B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDogSignalRServer", "WatchDogSignalRServer\WatchDogSignalRServer.csproj", "{3CE57E68-AD32-43AB-BD6D-D9D8C0DAFF9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog.CpuRamMonitor", "WatchDog.CpuRamMonitor\WatchDog.CpuRamMonitor.csproj", "{F51E8B8F-3331-4E67-9069-B053209DA380}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog.ProcessMonitor", "WatchDog.ProcessMonitor\WatchDog.ProcessMonitor.csproj", "{B12A2CB7-336D-4FD5-BD6F-F71A87E56840}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchDog.Windows.Dashboard", "WatchDog.Windows.Dashboard\WatchDog.Windows.Dashboard.csproj", "{B9A4E199-0931-41B8-A8FD-C26662B07FC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27E5B82A-C6AE-4133-9C5B-608952696AF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E5B82A-C6AE-4133-9C5B-608952696AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E5B82A-C6AE-4133-9C5B-608952696AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E5B82A-C6AE-4133-9C5B-608952696AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE8837B-2842-433D-8C1A-B872B536475B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE8837B-2842-433D-8C1A-B872B536475B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE8837B-2842-433D-8C1A-B872B536475B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE8837B-2842-433D-8C1A-B872B536475B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE57E68-AD32-43AB-BD6D-D9D8C0DAFF9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE57E68-AD32-43AB-BD6D-D9D8C0DAFF9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE57E68-AD32-43AB-BD6D-D9D8C0DAFF9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE57E68-AD32-43AB-BD6D-D9D8C0DAFF9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51E8B8F-3331-4E67-9069-B053209DA380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51E8B8F-3331-4E67-9069-B053209DA380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51E8B8F-3331-4E67-9069-B053209DA380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51E8B8F-3331-4E67-9069-B053209DA380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12A2CB7-336D-4FD5-BD6F-F71A87E56840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12A2CB7-336D-4FD5-BD6F-F71A87E56840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12A2CB7-336D-4FD5-BD6F-F71A87E56840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12A2CB7-336D-4FD5-BD6F-F71A87E56840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A4E199-0931-41B8-A8FD-C26662B07FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A4E199-0931-41B8-A8FD-C26662B07FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A4E199-0931-41B8-A8FD-C26662B07FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A4E199-0931-41B8-A8FD-C26662B07FC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
